@@ -10,6 +10,8 @@ export interface ImagePickerConf {
   hideDownloadBtn?: boolean;
   hideEditBtn?: boolean;
   hideAddBtn?: boolean;
+  hideUploadBtn?: boolean;
+  editOptions?: 'all' | 'crop-only' | 'filters-only';
 }
 
 export interface IState {
