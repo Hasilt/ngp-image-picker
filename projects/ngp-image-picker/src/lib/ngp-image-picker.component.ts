@@ -101,6 +101,7 @@ export class NgpImagePickerComponent implements OnInit {
   @ViewChild('imagePicker', { static: false }) imagePicker: ElementRef;
   @Output() $imageChanged: EventEmitter<any> = new EventEmitter<any>();
   @Output() $imageOriginal: EventEmitter<any> = new EventEmitter<any>();
+  @Output() uploadBtnClicked: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private chRef: ChangeDetectorRef) {}
 
