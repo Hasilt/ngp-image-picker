@@ -12,6 +12,7 @@ export class EditImageComponent implements OnInit {
   @Input() labels: any;
   @Input() imageSrc: string;
   @Input() color: string;
+  @Input() editConfig: string;
   controlPanelIndex: number = 0;
   showCrop: boolean = false;
   observer: ResizeObserver = null;
@@ -33,12 +34,18 @@ export class EditImageComponent implements OnInit {
   croppState: { x: number; y: number; width: number; height: number };
   croppSize: { width: number; height: number } = { width: 150, height: 150 };
   isMobile = false;
+  public tabPanels: Array<string> = ['Basic', 'Filters'];
 
   @Output() closeModal = new EventEmitter<{ state: IState; imageSrc: string } | null | undefined>();
 
-  constructor(private chRef: ChangeDetectorRef) {}
+  constructor(private chRef: ChangeDetectorRef) { }
 
   ngOnInit() {
+    switch (this.editConfig) {
+      case 'all': this.tabPanels = ['Basic', 'Filters']; break;
+      case 'crop-only': this.tabPanels = ['Basic']; break;
+      case 'filters-only': this.tabPanels = ['Filters']; break;
+    }
     this.state = JSON.parse(JSON.stringify({ ...this.state, ...this.initialState }));
     // console.log(this.state);
     this.isMobile = window.innerWidth < 800;

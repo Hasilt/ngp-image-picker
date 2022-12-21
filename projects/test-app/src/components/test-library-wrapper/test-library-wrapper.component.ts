@@ -10,9 +10,11 @@ export class TestLibraryWrapperComponent implements OnInit {
   config2: ImagePickerConf = {
     borderRadius: '8px',
     language: 'es',
-    width: '330px',
+    width: '320px',
+    height: '240px',
     objectFit: 'contain',
     aspectRatio: 4 / 3,
+    editOptions: 'crop-only',
     compressInitial: null,
   };
   initialImage: string = '';
@@ -23,5 +25,9 @@ export class TestLibraryWrapperComponent implements OnInit {
 
   onImageChanged(dataUri) {
     this.imageSrc = dataUri;
+  }
+
+  onUploadClicked(){
+    console.log('upload click');
   }
 }

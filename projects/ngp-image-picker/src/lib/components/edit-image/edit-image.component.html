@@ -27,7 +27,7 @@
     </div>
 
     <div class="control-panel">
-      <lib-tabs [color]="this.color" [_labels]="['Basic', 'Filters']" (indexActivatedChange)="onControlPanelIndexChange($event)">
+      <lib-tabs [color]="this.color" [_labels]="tabPanels" (indexActivatedChange)="onControlPanelIndexChange($event)">
         <ng-container *ngIf="controlPanelIndex == 0">
           <ng-container *ngIf="!isMobile || (isMobile && !showCrop)">
             <div style="display: flex; width: 100%; justify-content: space-between">

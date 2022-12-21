@@ -32,6 +32,8 @@ export class NgpImagePickerComponent implements OnInit {
     hideDownloadBtn: false,
     hideEditBtn: false,
     hideAddBtn: false,
+    hideUploadBtn: false,
+    editOptions: 'all',
   };
 
   state: IState = {
@@ -98,6 +100,8 @@ export class NgpImagePickerComponent implements OnInit {
     this.processConfig(value);
   }
 
+  @Input() showLoader: boolean = false;
+
   @ViewChild('imagePicker', { static: false }) imagePicker: ElementRef;
   @Output() $imageChanged: EventEmitter<any> = new EventEmitter<any>();
   @Output() $imageOriginal: EventEmitter<any> = new EventEmitter<any>();
@@ -123,6 +127,10 @@ export class NgpImagePickerComponent implements OnInit {
   onUpload(event) {
     event.preventDefault();
     this.imagePicker.nativeElement.click();
+  }
+
+  onDownloadBtnClick(){
+    this.uploadBtnClicked.emit();
   }
 
   handleFileSelect(evt) {

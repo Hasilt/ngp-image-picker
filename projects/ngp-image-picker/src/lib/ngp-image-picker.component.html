@@ -26,11 +26,13 @@
       aspectRatio: this.config.aspectRatio
     }"
   >
-    <img
+    <div>
+      <div *ngIf="showLoader" class="lds-ring" ><div></div><div></div><div></div><div></div></div>
+      <img
       [src]="this.imageSrc"
       alt="image-loaded"
-      [ngStyle]="{ borderRadius: this.config.borderRadius, objectFit: this.config.objectFit }"
-    />
+      [ngStyle]="{ borderRadius: this.config.borderRadius, objectFit: this.config.objectFit }"/>
+    </div>  
     <input #imagePicker type="file" style="display: none" [id]="'filePicker-' + this.uuidFilePicker" (change)="handleFileSelect($event)" />
   </div>
   <p
@@ -75,6 +77,14 @@
     >
       <span class="material-icons">cloud_download</span>
     </a>
+    <button
+      class="icon-btn"
+      id="upload-img"
+      *ngIf="!this.config.hideUploadBtn"
+      title="{{ labels['Upload The Image'] }}"
+      (click)="onDownloadBtnClick()">
+        <span class="material-icons">cloud_upload</span>
+    </button>
     <button class="icon-btn" id="delete-img" *ngIf="!this.config.hideDeleteBtn" title="{{ labels['Remove'] }}" (click)="onRemove()">
       <span class="material-icons">delete</span>
     </button>
@@ -86,6 +96,7 @@
   [imageSrc]="this.imageSrc"
   [initialState]="this.state"
   [labels]="this.labels"
+  [editConfig]="this.config?.editOptions"
   [color]="this.color"
   (closeModal)="this.onCloseEditPanel($event)"
 ></lib-edit-image>
